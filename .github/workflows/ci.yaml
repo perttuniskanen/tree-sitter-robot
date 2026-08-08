@@ -22,7 +22,7 @@ jobs:
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v2
         with:
-          TREE_SITTER_REF: "v0.26.11"
+          tree-sitter-ref: "v0.26.11"
       - run: tree-sitter --version
       - name: Run tests
         uses: tree-sitter/parser-test-action@v3
@@ -30,6 +30,7 @@ jobs:
           test-parser: true
           test-rust: true
           test-node: true
+          node-version: v24.19.0
           test-python: true
           test-go: true
           test-swift: false
