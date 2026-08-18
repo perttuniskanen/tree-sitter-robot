@@ -187,7 +187,7 @@ Challenging keyword invocation arguments
 Test Keyword
   Host Should Be Up   https://example.com:8080/foo?q=123
 
-  Host https://example.com:8080/foo?q=123 Should Be Up   
+  Host https://example.com:8080/foo?q=123 Should Be Up
 
 --------------------------------------------------------------------------------
 
@@ -275,7 +275,97 @@ Test Keyword
               (arguments
                 (argument
                   (inline_python_expression
-                    (python_expression)))))))))))
+                    (python_expression
+                      (python_chunk)
+                      (python_expression
+                        (python_chunk)
+                        (python_expression
+                          (python_chunk))))))))))))))
+
+================================================================================
+Inline Python with complex bracketing
+================================================================================
+
+
+*** Keywords ***
+
+Test Keyword
+    Some Keyword    ${{ 2 * int($arr[0]) ** 3 }}
+    Some Keyword    ${{ $brac in ["(", "[", "{"] }}
+    Some Keyword    ${{ $quote in ["'", '"'] }}
+    Some Keyword    ${{ {"key": {"inner": $val}} }}
+
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (section
+    (keywords_section
+      (section_header)
+      (keyword_definition
+        (name
+          (name_chunk))
+        (body
+          (statement
+            (keyword_invocation
+              (keyword
+                (name_chunk))
+              (arguments
+                (argument
+                  (inline_python_expression
+                    (python_expression
+                      (python_chunk)
+                      (python_expression
+                        (python_chunk)
+                        (python_expression
+                          (python_chunk)))
+                      (python_chunk)))))))
+          (statement
+            (keyword_invocation
+              (keyword
+                (name_chunk))
+              (arguments
+                (argument
+                  (inline_python_expression
+                    (python_expression
+                      (python_chunk)
+                      (python_expression
+                        (python_string)
+                        (python_chunk)
+                        (python_string)
+                        (python_chunk)
+                        (python_string))
+                      (python_chunk)))))))
+          (statement
+            (keyword_invocation
+              (keyword
+                (name_chunk))
+              (arguments
+                (argument
+                  (inline_python_expression
+                    (python_expression
+                      (python_chunk)
+                      (python_expression
+                        (python_string)
+                        (python_chunk)
+                        (python_string))
+                      (python_chunk)))))))
+          (statement
+            (keyword_invocation
+              (keyword
+                (name_chunk))
+              (arguments
+                (argument
+                  (inline_python_expression
+                    (python_expression
+                      (python_chunk)
+                      (python_expression
+                        (python_string)
+                        (python_chunk)
+                        (python_expression
+                          (python_string)
+                          (python_chunk)))
+                      (python_chunk))))))))))))
 
 ================================================================================
 Scalar variables embedded in the keyword name
