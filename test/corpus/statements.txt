@@ -187,7 +187,7 @@ Challenging keyword invocation arguments
 Test Keyword
   Host Should Be Up   https://example.com:8080/foo?q=123
 
-  Host https://example.com:8080/foo?q=123 Should Be Up   
+  Host https://example.com:8080/foo?q=123 Should Be Up
 
 --------------------------------------------------------------------------------
 
