@@ -2484,39 +2484,114 @@
       ]
     },
     "inline_python_expression": {
-      "type": "PREC_LEFT",
-      "value": 0,
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "${{"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "python_expression"
+        },
+        {
+          "type": "STRING",
+          "value": "}}"
+        }
+      ]
+    },
+    "python_expression": {
+      "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
-            "type": "STRING",
-            "value": "${{"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_python_string"
+            },
+            "named": true,
+            "value": "python_string"
           },
           {
             "type": "ALIAS",
             "content": {
-              "type": "REPEAT",
+              "type": "TOKEN",
               "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "}"
-                  },
-                  {
-                    "type": "PATTERN",
-                    "value": "[^\\r\\n}]+"
-                  }
-                ]
+                "type": "PATTERN",
+                "value": "[^()\\[\\]{}'\"]+"
               }
             },
             "named": true,
-            "value": "python_expression"
+            "value": "python_chunk"
           },
           {
-            "type": "STRING",
-            "value": "}}"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "SYMBOL",
+                "name": "python_expression"
+              },
+              {
+                "type": "STRING",
+                "value": ")"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "["
+              },
+              {
+                "type": "SYMBOL",
+                "name": "python_expression"
+              },
+              {
+                "type": "STRING",
+                "value": "]"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "{"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "python_expression"
+              },
+              {
+                "type": "STRING",
+                "value": "}"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "_python_string": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "\"[^\"\\\\]*(\\\\.[^\"\\\\]*)*\""
+          },
+          {
+            "type": "PATTERN",
+            "value": "'[^'\\\\]*(\\\\.[^'\\\\]*)*'"
           }
         ]
       }
