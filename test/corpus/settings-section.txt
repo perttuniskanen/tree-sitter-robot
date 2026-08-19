@@ -79,22 +79,15 @@ Task Timeout      5 minutes
           (argument
             (text_chunk))))
       (setting_statement
-        (setting_name)
-        (arguments
-          (argument
-            (text_chunk))))
+        (executable_setting_name)
+        (keyword_invocation
+          (keyword
+            (name_chunk))))
       (setting_statement
-        (setting_name)
-        (arguments
-          (argument
-            (text_chunk))))
-      (setting_statement
-        (setting_name)
-        (arguments
-          (argument
-            (text_chunk))
-          (argument
-            (text_chunk))))
+        (executable_setting_name)
+        (keyword_invocation
+          (keyword
+            (name_chunk))))
       (setting_statement
         (setting_name)
         (arguments
@@ -120,7 +113,19 @@ Task Timeout      5 minutes
         (setting_name)
         (arguments
           (argument
+            (text_chunk))
+          (argument
             (text_chunk))))
+      (setting_statement
+        (executable_setting_name)
+        (keyword_invocation
+          (keyword
+            (name_chunk))))
+      (setting_statement
+        (executable_setting_name)
+        (keyword_invocation
+          (keyword
+            (name_chunk))))
       (setting_statement
         (setting_name)
         (arguments
@@ -132,20 +137,15 @@ Task Timeout      5 minutes
           (argument
             (text_chunk))))
       (setting_statement
-        (setting_name)
-        (arguments
-          (argument
-            (text_chunk))))
+        (executable_setting_name)
+        (keyword_invocation
+          (keyword
+            (name_chunk))))
       (setting_statement
-        (setting_name)
-        (arguments
-          (argument
-            (text_chunk))))
-      (setting_statement
-        (setting_name)
-        (arguments
-          (argument
-            (text_chunk))))
+        (executable_setting_name)
+        (keyword_invocation
+          (keyword
+            (name_chunk))))
       (setting_statement
         (setting_name)
         (arguments
