@@ -14,20 +14,23 @@ const SETTINGS_KEYWORDS = [
   "Name",
   "Documentation",
   "Metadata",
-  "Suite Setup",
-  "Suite Teardown",
   "Test Tags",
   "Force Tags",
   "Default Tags",
   "Keyword Tags",
-  "Test Setup",
-  "Test Teardown",
   "Test Template",
   "Test Timeout",
-  "Task Setup",
-  "Task Teardown",
   "Task Template",
   "Task Timeout",
+];
+
+const EXECUTABLE_SETTINGS_KEYWORDS = [
+  "Suite Setup",
+  "Suite Teardown",
+  "Test Setup",
+  "Test Teardown",
+  "Task Setup",
+  "Task Teardown",
 ];
 
 function caseInsensitive(keyword) {
@@ -106,7 +109,17 @@ module.exports = grammar({
         repeat(choice($.setting_statement, $._empty_line)),
       ),
     setting_statement: ($) =>
-      seq(field("name", $.setting_name), $.arguments, $._line_break),
+      choice(
+        seq(
+          field("name", $.executable_setting_name),
+          optional($._whitespace),
+          optional($.keyword_invocation),
+          $._line_break
+        ),
+        seq(field("name", $.setting_name), $.arguments, $._line_break),
+      ),
+    executable_setting_name: ($) =>
+      choice(...EXECUTABLE_SETTINGS_KEYWORDS.map(caseInsensitive)),
     setting_name: ($) => choice(...SETTINGS_KEYWORDS.map(caseInsensitive)),
 
     //
